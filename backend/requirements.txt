@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pefile
+yara-python
+scikit-learn
+numpy
+pandas
+python-multipart
+pytest
+requests
