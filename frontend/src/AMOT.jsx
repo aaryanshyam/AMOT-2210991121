@@ -94,18 +94,18 @@ function App() {
 
       {/* Navigation Sidebar */}
       <aside className="sidebar">
-        <div className="flex items-center gap-4 mb-12" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-          <div style={{ background: '#6366f1', padding: '0.6rem', borderRadius: '14px', boxShadow: '0 0 20px rgba(99,102,241,0.4)' }}>
-            <Shield size={28} color="white" />
+          <div className="flex items-center gap-4 mb-12" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
+          <div style={{ background: 'var(--accent)', padding: '0.6rem', borderRadius: '14px', boxShadow: '0 0 20px var(--accent-glow)' }}>
+            <Shield size={28} color="black" />
           </div>
           <div>
-            <h1 style={{ fontSize: '1.25rem', fontWeight: '800', tracking: '-0.02em' }}>M.A.T.I.</h1>
-            <p style={{ fontSize: '10px', color: '#6366f1', fontWeight: '800', letterSpacing: '0.1em', opacity: 0.8 }}>SECURITY LAB</p>
+            <h1 style={{ fontSize: '1.25rem', fontWeight: '800', tracking: '-0.02em' }}>AMOT </h1>
+            <p style={{ fontSize: '10px', color: 'var(--accent)', fontWeight: '800', letterSpacing: '0.1em', opacity: 0.8 }}>SECURITY LAB</p>
           </div>
         </div>
 
         <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '14px', background: 'rgba(99,102,241,0.1)', color: '#6366f1', fontWeight: '700' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', borderRadius: '14px', background: 'rgba(59,130,246,0.08)', color: 'var(--accent)', fontWeight: '700' }}>
             <LayoutGrid size={20} />
             <span>Cyber Triage</span>
           </div>
@@ -124,7 +124,7 @@ function App() {
             <div style={{ width: '8px', height: '8px', background: '#00e699', borderRadius: '50%', boxShadow: '0 0 8px #00e699' }} />
             <span style={{ fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', color: '#4ade80' }}>Global Protected</span>
           </div>
-          <p style={{ fontSize: '10px', color: '#64748b' }}>Version: 1.0.4 Enterprise<br />Node: PRD-NYC-01</p>
+            <p style={{ fontSize: '10px', color: 'var(--text-dim)' }}>Version: 1.0.4 Enterprise<br />Node: PRD-NYC-01</p>
         </div>
       </aside>
 
@@ -149,17 +149,17 @@ function App() {
                   className="upload-zone"
                   onClick={() => document.getElementById('file-upload').click()}
                 >
-                  <div style={{ display: 'inline-flex', padding: '2rem', background: 'rgba(99,102,241,0.1)', borderRadius: '24px', marginBottom: '1.5rem' }}>
-                    <Upload size={48} color="#6366f1" />
+                  <div style={{ display: 'inline-flex', padding: '2rem', background: 'rgba(59,130,246,0.08)', borderRadius: '24px', marginBottom: '1.5rem' }}>
+                    <Upload size={48} color="var(--accent)" />
                   </div>
                   <h3 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '0.5rem' }}>Ingest Payload</h3>
-                  <p style={{ color: '#94a3b8', fontSize: '1rem', marginBottom: '2.5rem', maxWidth: '400px', margin: '0 auto 2.5rem' }}>Drop any suspicious PE or binary for global intelligence lookup and deep static forensics.</p>
+                  <p style={{ color: 'var(--text-dim)', fontSize: '1rem', marginBottom: '2.5rem', maxWidth: '400px', margin: '0 auto 2.5rem' }}>Drop any suspicious PE or binary for global intelligence lookup and deep static forensics.</p>
                   <input id="file-upload" type="file" style={{ display: 'none' }} onChange={(e) => analyzeFile(e.target.files[0])} />
                   <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
                     <button className="btn-premium">Select File System <ArrowRight size={16} style={{ marginLeft: '0.5rem' }} /></button>
                     <button
-                      onClick={() => alert("M.A.T.I. Guard 1.0.4 Enterprise:\nDeveloped for advanced ransomware identification. \nUpload any suspicious binary to trigger 5-stage hybrid analysis.")}
-                      style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', padding: '1rem 2rem', borderRadius: '16px', fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+                      onClick={() => alert("AMOT Guard 1.0.4 Enterprise:\nDeveloped for advanced ransomware identification. \nUpload any suspicious binary to trigger 5-stage hybrid analysis.")}
+                      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid var(--border)', color: 'var(--text-main)', padding: '1rem 2rem', borderRadius: '16px', fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
                     >
                       <Info size={16} /> More Info
                     </button>
@@ -176,15 +176,15 @@ function App() {
                   className="glass-panel"
                   style={{ textAlign: 'center', padding: '6rem' }}
                 >
-                  <div style={{ position: 'relative', width: '100px', height: '100px', margin: '0 auto 2rem' }}>
-                    <div style={{ position: 'absolute', inset: 0, border: '6px solid rgba(99,102,241,0.1)', borderRadius: '50%' }} />
-                    <div style={{ position: 'absolute', inset: 0, border: '6px solid #6366f1', borderRadius: '50%', borderTopColor: 'transparent' }} className="animate-spin" />
-                    <Search size={32} color="#6366f1" style={{ position: 'absolute', inset: 0, margin: 'auto' }} />
+                    <div style={{ position: 'relative', width: '100px', height: '100px', margin: '0 auto 2rem' }}>
+                    <div style={{ position: 'absolute', inset: 0, border: '6px solid rgba(59,130,246,0.08)', borderRadius: '50%' }} />
+                    <div style={{ position: 'absolute', inset: 0, border: '6px solid var(--accent)', borderRadius: '50%', borderTopColor: 'transparent' }} className="animate-spin" />
+                    <Search size={32} color="var(--accent)" style={{ position: 'absolute', inset: 0, margin: 'auto' }} />
                   </div>
                   <h3 style={{ fontSize: '1.5rem', fontWeight: '800' }}>Accessing Global Intel...</h3>
                   <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', marginTop: '2rem' }}>
                     {['VirusTotal', 'Static-DB', 'ML-Core'].map((s, i) => (
-                      <div key={i} style={{ fontSize: '10px', color: '#6366f1', fontWeight: '800', letterSpacing: '0.1em' }} className="animate-pulse">• {s} OK</div>
+                      <div key={i} style={{ fontSize: '10px', color: 'var(--accent)', fontWeight: '800', letterSpacing: '0.1em' }} className="animate-pulse">• {s} OK</div>
                     ))}
                   </div>
                 </motion.div>
@@ -218,9 +218,9 @@ function App() {
                   <div className="glass-panel">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                       <h3 style={{ fontSize: '1.25rem', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        <Globe size={24} color="#3b82f6" /> Global Intelligence & History
+                        <Globe size={24} color="var(--accent)" /> Global Intelligence & History
                       </h3>
-                      <div style={{ padding: '0.4rem 1rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '100px', fontSize: '10px', color: '#3b82f6', fontWeight: '800' }}>
+                      <div style={{ padding: '0.4rem 1rem', background: 'rgba(59, 130, 246, 0.08)', borderRadius: '100px', fontSize: '10px', color: 'var(--accent)', fontWeight: '800' }}>
                         LIVE OSINT SYNC
                       </div>
                     </div>
@@ -350,23 +350,23 @@ function App() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.2rem', borderRadius: '20px' }}>
                     <p style={{ fontSize: '0.85rem', fontWeight: '800', marginBottom: '0.4rem' }}>{results.file_info.filename}</p>
-                    <p style={{ fontSize: '10px', color: '#6366f1', fontFamily: 'JetBrains Mono' }}>{results.osint_report.hash}</p>
+                    <p style={{ fontSize: '10px', color: 'var(--accent)', fontFamily: 'JetBrains Mono' }}>{results.osint_report.hash}</p>
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <p style={{ fontSize: '10px', fontWeight: '800', color: '#94a3b8', letterSpacing: '0.1em' }}>HUMAN-READABLE INSIGHTS</p>
                     {results?.static_analysis?.human_insights?.map((insight, i) => (
-                      <div key={i} style={{ display: 'flex', gap: '0.8rem', background: 'rgba(99,102,241,0.05)', padding: '0.75rem', borderRadius: '12px', border: '1px solid rgba(99,102,241,0.1)' }}>
-                        <ChevronRight size={14} color="#6366f1" style={{ flexShrink: 0, marginTop: '2px' }} />
-                        <p style={{ fontSize: '0.85rem', color: '#cbd5e1', lineHeight: '1.4' }}>{insight}</p>
+                      <div key={i} style={{ display: 'flex', gap: '0.8rem', background: 'rgba(59,130,246,0.05)', padding: '0.75rem', borderRadius: '12px', border: '1px solid rgba(59,130,246,0.08)' }}>
+                        <ChevronRight size={14} color="var(--accent)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <p style={{ fontSize: '0.85rem', color: 'var(--text-dim)', lineHeight: '1.4' }}>{insight}</p>
                       </div>
                     ))}
                   </div>
                 </div>
               ) : (
-                <div style={{ padding: '4rem 0', textAlign: 'center', opacity: 0.2 }}>
-                  <Search size={48} color="#6366f1" style={{ margin: '0 auto 1.5rem' }} />
-                  <p style={{ fontSize: '0.8rem', fontWeight: '800', color: '#94a3b8' }}>EMPTY - PLEASE UPLOAD FILE FIRST</p>
+                  <div style={{ padding: '4rem 0', textAlign: 'center', opacity: 0.2 }}>
+                  <Search size={48} color="var(--accent)" style={{ margin: '0 auto 1.5rem' }} />
+                  <p style={{ fontSize: '0.8rem', fontWeight: '800', color: 'var(--text-dim)' }}>EMPTY - PLEASE UPLOAD FILE FIRST</p>
                 </div>
               )}
             </section>

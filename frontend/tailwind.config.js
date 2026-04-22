@@ -11,7 +11,7 @@ export default {
                     dark: '#05060b',
                     surface: '#0d0f17',
                     border: '#1e293b',
-                    accent: '#6366f1',
+                    accent: '#3b82f6',
                     danger: '#ef4444',
                     success: '#10b981',
                 }

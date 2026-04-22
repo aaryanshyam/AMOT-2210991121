@@ -1,10 +1,7 @@
 fastapi
 uvicorn
-pefile
+python-multipart
 yara-python
 scikit-learn
-numpy
 pandas
-python-multipart
-pytest
 requests

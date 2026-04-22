@@ -60,7 +60,7 @@ const SECTIONS = [
             whileHover={{ x: 10 }}
             style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', background: '#f1f5f9', padding: '1.5rem', borderRadius: '20px', border: '1px solid #e2e8f0' }}
           >
-             <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#6366f1', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '0.9rem' }}>{i+1}</div>
+             <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--accent)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '0.9rem' }}>{i+1}</div>
              <span style={{ fontWeight: '800', fontSize: '1.1rem', color: '#1e293b' }}>{s}</span>
           </motion.div>
         ))}
@@ -71,31 +71,31 @@ const SECTIONS = [
 ];
 
 const CyberNode = ({ icon, color, radius, speed, scrollProgress }) => {
-    const rotation = useTransform(scrollProgress, [0, 1], [0, 360 * speed]);
-    return (
-        <motion.div
-            style={{
-                position: 'absolute',
-                width: 50,
-                height: 50,
-                borderRadius: '50%',
-                background: `rgba(15, 23, 42, 0.8)`,
-                border: `1px solid ${color}44`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                left: `calc(50% - 25px)`,
-                top: `calc(50% - 25px)`,
-                x: useTransform(rotation, r => radius * Math.cos(r * (Math.PI / 180))),
-                y: useTransform(rotation, r => radius * Math.sin(r * (Math.PI / 180))),
-                zIndex: 2,
-                boxShadow: `0 0 30px ${color}11`,
-                backdropFilter: 'blur(10px)'
-            }}
-        >
-            {React.cloneElement(icon, { size: 20, color: color })}
-        </motion.div>
-    );
+  const rotation = useTransform(scrollProgress, [0, 1], [0, 360 * speed]);
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        width: 50,
+        height: 50,
+        borderRadius: '50%',
+        background: `rgba(15, 23, 42, 0.8)`,
+        border: `1px solid ${color}44`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        left: `calc(50% - 25px)`,
+        top: `calc(50% - 25px)`,
+        x: useTransform(rotation, r => radius * Math.cos(r * (Math.PI / 180))),
+        y: useTransform(rotation, r => radius * Math.sin(r * (Math.PI / 180))),
+        zIndex: 2,
+        boxShadow: `0 0 30px ${color}11`,
+        backdropFilter: 'blur(10px)'
+      }}
+    >
+      {React.cloneElement(icon, { size: 20, color: color })}
+    </motion.div>
+  );
 };
 
 const ScrollSection = ({ section, index }) => {
@@ -109,8 +109,8 @@ const ScrollSection = ({ section, index }) => {
       style={{ 
         minHeight: '100vh', 
         width: '100%',
-        background: isLight ? '#f8fafc' : '#020617',
-        color: isLight ? '#0f172a' : '#ffffff',
+        background: isLight ? '#09121c' : 'var(--bg)',
+        color: 'var(--text-main)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -125,7 +125,7 @@ const ScrollSection = ({ section, index }) => {
            viewport={{ once: true }}
            transition={{ duration: 0.8 }}
         >
-          <div style={{ color: '#6366f1', marginBottom: '1.5rem' }}>
+          <div style={{ color: 'var(--accent)', marginBottom: '1.5rem' }}>
             {section.icon}
           </div>
           <h2 className={isLight ? "" : "text-metallic"} style={{ fontSize: '4.5rem', fontWeight: '1000', marginBottom: '1.5rem', letterSpacing: '-0.04em', lineHeight: 1.1 }}>
@@ -146,11 +146,11 @@ const IntroView = ({ onComplete }) => {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   return (
-    <div style={{ background: '#020617', position: 'relative', overflowX: 'hidden' }}>
+    <div style={{ background: 'var(--bg)', position: 'relative', overflowX: 'hidden' }}>
       <motion.div
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, height: '4px',
-          background: 'linear-gradient(to right, #94a3b8, #6366f1)',
+          background: 'linear-gradient(to right, var(--text-dim), var(--accent))',
           transformOrigin: '0%', scaleX, zIndex: 1000
         }}
       />
@@ -171,9 +171,9 @@ const IntroView = ({ onComplete }) => {
              />
          ))}
          
-         <CyberNode icon={<Shield />} color="#94a3b8" radius={250} speed={1} scrollProgress={scrollYProgress} />
-         <CyberNode icon={<Lock />} color="#6366f1" radius={450} speed={-0.6} scrollProgress={scrollYProgress} />
-         <CyberNode icon={<Zap />} color="#94a3b8" radius={650} speed={0.3} scrollProgress={scrollYProgress} />
+         <CyberNode icon={<Shield />} color="var(--text-dim)" radius={250} speed={1} scrollProgress={scrollYProgress} />
+         <CyberNode icon={<Lock />} color="var(--accent)" radius={450} speed={-0.6} scrollProgress={scrollYProgress} />
+         <CyberNode icon={<Zap />} color="var(--text-dim)" radius={650} speed={0.3} scrollProgress={scrollYProgress} />
       </div>
 
       <div className="bg-gradient" style={{ opacity: 0.4 }} />
@@ -204,14 +204,14 @@ const IntroView = ({ onComplete }) => {
               fontSize: '8rem', fontWeight: '1000', letterSpacing: '-0.06em', 
               lineHeight: 0.8, marginBottom: '1.5rem'
           }}>
-            M.A.T.I.
+            AMOT
           </h1>
           <h2 className="text-metallic-blue" style={{ 
               fontSize: '1.2rem', fontWeight: '800', letterSpacing: '0.4rem', 
               textTransform: 'uppercase', opacity: 0.9, marginBottom: '3rem',
               width: '100%', textAlign: 'center'
           }}>
-            Malware Analysis and Threat Intelligence
+            Ransomware & Forensics Analyser
           </h2>
 
           <p style={{ 
@@ -258,12 +258,12 @@ const IntroView = ({ onComplete }) => {
           </motion.div>
           
           <h2 className="text-metallic" style={{ fontSize: '4rem', fontWeight: '1000', marginBottom: '2rem', letterSpacing: '0.1em' }}>
-            M.A.T.I. AUTHORIZED
+            AMOT AUTHORIZED
           </h2>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '4rem' }}>
             <p style={{ fontSize: '1.4rem', color: '#94a3b8', lineHeight: '1.6', fontWeight: '500' }}>
-              The M.A.T.I. Triage Node is now synchronized with your environment. <br />
+              The AMOT Triage Node is now synchronized with your environment. <br />
               All forensic modules are standing by for payload detonation.
             </p>
             
@@ -292,7 +292,7 @@ const IntroView = ({ onComplete }) => {
               display: 'inline-flex', alignItems: 'center', gap: '1rem'
             }}
           >
-            LAUNCH M.A.T.I. LAB <ArrowRight size={24} />
+            LAUNCH AMOT LAB <ArrowRight size={24} />
           </motion.button>
         </div>
       </motion.section>

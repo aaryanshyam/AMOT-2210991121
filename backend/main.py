@@ -1,9 +1,15 @@
+"""
+AMOT FastAPI Backend for Ransomware & Forensics Analyser.
+"""
+
+import os
+import shutil
+import uuid
+import traceback
+
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import shutil
-import os
-import uuid
-import json
+import uvicorn
 
 from engines.static_analyzer import StaticAnalyzer
 from engines.ml_detector import MLDetector
@@ -12,7 +18,7 @@ from engines.detonation_manager import DetonationManager
 from engines.osint_scanner import OSINTScanner
 from utils.db_manager import DatabaseManager
 
-app = FastAPI(title="M.A.T.I. Malware Analysis and Threat Intelligence API")
+app = FastAPI(title="AMOT Ransomware & Forensics Analyser API")
 
 # Enable CORS for frontend
 app.add_middleware(
@@ -35,22 +41,38 @@ detonation_manager = DetonationManager(sandbox_type="simulated")
 osint_scanner = OSINTScanner()
 db_manager = DatabaseManager()
 
+
 @app.get("/")
 async def root():
-    return {"message": "Titanium Ransomware Guard API is running"}
+    """
+    Root endpoint to verify API health.
+    """
+    return {"message": "AMOT Ransomware & Forensics Analyser API is running"}
+
 
 @app.get("/history")
 async def get_history():
+    """
+    Retrieve all previous scan results from the database.
+    """
     return db_manager.get_history()
+
 
 @app.delete("/history/{scan_id}")
 async def delete_history(scan_id: int):
+    """
+    Remove a specific scan record from the history.
+    """
     if db_manager.delete_scan(scan_id):
         return {"status": "success"}
     raise HTTPException(status_code=404, detail="Scan not found")
 
+
 @app.post("/analyze")
 async def analyze_file(file: UploadFile = File(...)):
+    """
+    Perform a complete hybrid analysis on a suspected malware file.
+    """
     file_id = str(uuid.uuid4())
     file_path = os.path.join(UPLOAD_DIR, f"{file_id}_{file.filename}")
     
@@ -76,8 +98,16 @@ async def analyze_file(file: UploadFile = File(...)):
         osint_results = osint_scanner.scan(file_path)
         
         # 6. Aggregate Results
-        verdict = "Malicious" if ml_results["score"] > 70 or yara_results["matches_count"] > 0 or osint_results.get("detections", 0) > 0 else "Likely Benign"
-        threat_score = max(ml_results["score"], min(osint_results.get("detections", 0) * 10, 100))
+        is_malicious = (
+            ml_results["score"] > 70 or 
+            yara_results["matches_count"] > 0 or 
+            osint_results.get("detections", 0) > 0
+        )
+        verdict = "Malicious" if is_malicious else "Likely Benign"
+        
+        ml_score = ml_results["score"]
+        osint_score = min(osint_results.get("detections", 0) * 10, 100)
+        threat_score = max(ml_score, osint_score)
         
         final_report = {
             "file_info": {
@@ -100,14 +130,13 @@ async def analyze_file(file: UploadFile = File(...)):
         return final_report
 
     except Exception as e:
-        import traceback
         print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         # Optional: cleanup uploaded file after analysis if needed
-        # os.remove(file_path) 
+        # os.remove(file_path)
         pass
 
+
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

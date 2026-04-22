@@ -1,4 +1,10 @@
-import yara
+try:
+    import yara
+    _YARA_AVAILABLE = True
+except Exception:
+    yara = None
+    _YARA_AVAILABLE = False
+
 import os
 
 class YaraScanner:
@@ -20,11 +26,13 @@ class YaraScanner:
                     namespace = os.path.splitext(file)[0]
                     rule_files[namespace] = rule_path
 
-        if rule_files:
+        if rule_files and _YARA_AVAILABLE:
             try:
                 self.rules = yara.compile(filepaths=rule_files)
-            except yara.Error as e:
+            except Exception as e:
                 print(f"Error compiling YARA rules: {e}")
+        elif rule_files and not _YARA_AVAILABLE:
+            print("YARA library not available; skipping rule compilation.")
         else:
             print("No YARA rules found.")
 
