@@ -1,0 +1,25 @@
+# OSINT & Human Intelligence Expansion
+
+This plan outlines the final additions to "Titanium Guard" to make it user-friendly for non-technical audiences and globally aware via VirusTotal.
+
+## Proposed Changes
+
+### [Component] Backend Services
+#### [NEW] [osint_scanner.py](file:///C:/Users/91997/.gemini/antigravity/scratch/ransomware_detection/backend/engines/osint_scanner.py)
+- Implement `OSINTScanner` class.
+- Add support for VirusTotal API (Free tier).
+- Add "Simulation Mode" for presentations if an API key is not provided, showing how the global reputation lookups work.
+
+#### [MODIFY] [static_analyzer.py](file:///C:/Users/91997/.gemini/antigravity/scratch/ransomware_detection/backend/engines/static_analyzer.py)
+- Add "Human Insights" generator.
+- Example: Map `Entropy > 7.5` -> `"Content is heavily obscured/encrypted, typical of hidden payloads."`
+
+### [Component] Frontend Dashboard
+#### [MODIFY] [App.jsx](file:///C:/Users/91997/.gemini/antigravity/scratch/ransomware_detection/frontend/src/App.jsx)
+- Update **Session Intel** with the translated strings.
+- [NEW] **Malware Workflow Card**: A step-by-step visual timeline of what the file does (e.g., 1. Enters System -> 2. Obfuscates -> 3. Encrypts Files).
+- [NEW] **Global Reputation Card**: Displays VirusTotal stats (Detections, Last Seen, Family Name).
+
+## Verification Plan
+1. Test with a standard file to see "Benign" workflow (1. Load -> 2. Standard Service Execution).
+2. Test with high-entropy file to see "Ransomware" workflow (1. Obfuscated Entry -> 2. Key Generation -> 3. File Destruction).
