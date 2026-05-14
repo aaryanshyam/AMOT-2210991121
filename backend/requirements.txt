@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-python-multipart
-yara-python
-scikit-learn
-pandas
-requests
